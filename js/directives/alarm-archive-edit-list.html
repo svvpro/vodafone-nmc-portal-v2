@@ -1,0 +1,50 @@
+
+<div id="exportable">
+    <table class="table table-striped table-hover" >
+        <thead>
+        <tr>
+            <th class="tr-id">id
+                <button class="btn btn-mini btn-link" ng-click="sort('id')"><i class="icon-sort"></i></button>
+            </th>
+            <th class="tr-system">Система
+                <button class="btn btn-mini btn-link" ng-click="sort('system')"><i class="icon-sort"></i></button>
+            </th>
+            <th class="tr-category">Категория
+                <button class="btn btn-mini btn-link" ng-click="sort('category')"><i class="icon-sort"></i></button>
+            </th>
+            <th>Текст открытия
+                <button class="btn btn-mini btn-link" ng-click="sort('text_open')"><i class="icon-sort"></i></button>
+            </th>
+            <th>Текст закрытия
+                <button class="btn btn-mini btn-link" ng-click="sort('text_close')"><i class="icon-sort"></i></button>
+            </th>
+            <th class="tr-date">Дата откр.
+                <button class="btn btn-mini btn-link" ng-click="sort('date_open')"><i class="icon-sort"></i></button>
+            </th>
+            <th class="tr-date">Дата закр.
+                <button class="btn btn-mini btn-link" ng-click="sort('date_close')"><i class="icon-sort"></i></button>
+            </th>
+            <th class="tr-comment"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr dir-paginate="item in pageItems | orderBy:orderProp:direction | itemsPerPage:10 ">
+            <td>{{ item.id }}</td>
+            <td>{{ item.system }}</td>
+            <td>{{ item.category }}</td>
+            <td>{{ item.text_open }}</td>
+            <td>{{ item.text_close }}</td>
+            <td>{{ item.date_open }}</td>
+            <td>{{ item.date_close }}</td>
+            <td class="text-right block-button">
+                <a href="" ng-click="editRecord(item.id)" class="btn btn-warning btn-xs"> Редактировать</a>
+                <a href="" ng-click="deleteRecord(item.id)" class="btn btn-danger btn-xs"> Удалить</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <dir-pagination-controls template-url="../bower_components/angularUtils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+    </div>
+
+</div>

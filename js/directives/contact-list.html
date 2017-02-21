@@ -1,0 +1,38 @@
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th>Фамилия
+            <button class="btn btn-mini btn-link" ng-click="sort('surname')"><i class="icon-sort"></i></button>
+        </th>
+        <th>Имя
+            <button class="btn btn-mini btn-link" ng-click="sort('name')"><i class="icon-sort"></i></button>
+        </th>
+        <th>Отображение в рассылке
+            <button class="btn btn-mini btn-link" ng-click="sort('name_in_template')"><i class="icon-sort"></i></button>
+        </th>
+        <th>PBX
+            <button class="btn btn-mini btn-link" ng-click="sort('pbx')"><i class="icon-sort"></i></button>
+        </th>
+        <th>Моб.тел
+            <button class="btn btn-mini btn-link" ng-click="sort('phone')"><i class="icon-sort"></i></button>
+        </th>
+        <th>e-mail
+            <button class="btn btn-mini btn-link" ng-click="sort('mail')"><i class="icon-sort"></i></button>
+        </th>
+        <th>Группа
+            <button class="btn btn-mini btn-link" ng-click="sort('departament_id')"><i class="icon-sort"></i></button>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in pageItems | orderBy:orderProp:direction | filter:{surname:query, departament: departament.title}">
+        <td>{{ item.surname}}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.name_in_template }}</td>
+        <td>{{ item.pbx }}</td>
+        <td>{{ item.phone | phoneFiler }}</td>
+        <td>{{ item.mail }}</td>
+        <td>{{ item.departament }}</td>
+    </tr>
+    </tbody>
+</table>

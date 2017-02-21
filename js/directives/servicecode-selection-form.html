@@ -1,0 +1,15 @@
+<div class="col-md-6">
+    <div class="form-group" ng-init="selectServiceCodeType()">
+        <label>Выборка по сервису:</label>
+        <select class="form-control" ng-model="service.title">
+            <option value="{{ }}">All</option>
+            <option  ng-repeat="service in selectServiceCodeItems | orderBy: 'code_id'" value="{{ service.title }}">{{ service.title}}</option>
+        </select>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label>Поиск по сервис коду:</label>
+        <input type="text" class="form-control" id="focusedInput" ng-model="query">
+    </div>
+</div>

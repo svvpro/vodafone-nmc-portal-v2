@@ -1,0 +1,15 @@
+<div class="col-md-6">
+    <div class="form-group" ng-init="selectDepartament()">
+        <label>Выборка по группе отвественных за подсистему:</label>
+        <select class="form-control" ng-model="departament.title">
+            <option value="{{ }}">All</option>
+            <option  ng-repeat="departament in selectDepartamentItems | orderBy: 'title'" value="{{ departament.title }}">{{ departament.title}}</option>
+        </select>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label>Поиск по Фамилии:</label>
+        <input type="text" class="form-control" id="focusedInput" ng-model="query">
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th>Сервис код
+            <button class="btn btn-mini btn-link" ng-click="sort('code_id')"><i class="icon-sort"></i></button>
+        </th>
+        <th>Описание
+            <button class="btn btn-mini btn-link" ng-click="sort('description')"><i class="icon-sort"></i></button>
+        </th>
+        <th>
+
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in pageItems | orderBy: orderProp:direction | filter:{code_id:query, service: service.title}"  ng-hide="!service.title">
+        <td>{{ item.code_id}}</td>
+        <td>{{ item.description}}</td>
+        <td class="text-right">
+            <button class="btn btn-primary"  ngclipboard data-clipboard-text="{{ item.description }}">Копировать описание</button>
+            <button class="btn btn-primary"  ngclipboard data-clipboard-text="{{ item.code_id +' - '+  item.description }}">Копировать код + описание</button>
+        </td>
+    </tr>
+    </tbody>
+</table>

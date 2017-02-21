@@ -1,0 +1,24 @@
+
+    <div ng-repeat="item in activeAlarmItems | orderBy: 'next_status'"
+        class="alert alert-dismissible alert-success border-success"
+        ng-class="{'alert alert-dismissible alert-warning border-warning':((item.next_status | toUnixTime) - currentUnixDateTime) < 1800  && ((item.next_status | toUnixTime) - currentUnixDateTime)  > 900, 'alert alert-dismissible alert-danger border-critical' : ((item.next_status | toUnixTime) - currentUnixDateTime) <= 900}"
+        ng-click="editRecord(item.id)" style="cursor: pointer">
+        <div ng-if="((item.next_status | toUnixTime) - currentUnixDateTime) <= 900"></div>
+        <div ng-if="((item.next_status | toUnixTime) - currentUnixDateTime) < 1800  && ((item.next_status | toUnixTime) - currentUnixDateTime)  > 900"></div>
+        <div ng-if="((item.next_status | toUnixTime) - currentUnixDateTime) > 1800"></div>
+        <div >
+            {{ item.text}}
+            <hr>
+            <div class="row">
+            <div class="col-md-6">
+                <strong>Система: </strong>{{ item.system }} <br>
+                <strong>Категория: </strong>{{ item.category.replace("Статус","") }} <br>
+                <strong>Part: </strong>{{ item.part }}
+            </div>
+            <div class="col-md-6">
+                <strong>До следующего статуса: </strong> <br>
+                <timer end-time="item.next_status" class="timer">{{days}}д : {{hours}}ч : {{minutes}}м : {{seconds}}с</timer>
+            </div>
+
+        </div>
+    </div>

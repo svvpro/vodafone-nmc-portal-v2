@@ -1,0 +1,107 @@
+<form name="myForm">
+    <!--{{ formData.type_id }}-->
+    <div class="row" ng-init="resetForm()">
+        <input type="hidden" ng-model="formData.id">
+        <input type="hidden" ng-model="formData.close_id">
+        <div class="form-group col-md-4" ng-init="selectTypeCategory()">
+            <label>Тип информирования</label>
+            <select class="form-control" ng-model="formData.type_id" >
+                <option value="">Выбор типа информированя</option>
+                <option ng-repeat="category in selectTypeCategoryItems" value="{{ category.id }}">
+                    {{ category.title }}
+                </option>
+            </select>
+            <span ng-show="!formData.type_id" class="label label-danger info-alert">Поле обязательно к заполнению</span>
+        </div>
+
+        <div class="form-group col-md-4" ng-init="selectSystem()">
+            <label>Система</label>
+            <select class="form-control" ng-model="formData.system_id">
+                <option value="">Выбор системы</option>
+                <option ng-repeat="system in selectSystemItems" value="{{ system.id }}">{{ system.title}}</option>
+            </select>
+            <span ng-show="!formData.system_id" class="label label-danger info-alert">Поле обязательно к заполнению</span>
+        </div>
+
+        <div class="form-group col-md-4" ng-init="selectContact()">
+            <label> Ответсвенный</label><br/>
+            <oi-select
+                    oi-options="c.surname for c in selectContactItems | orderBy:'surname'"
+                    ng-model="formData.ingener"
+                    multiple
+                    placeholder="Выбрать ответственного">
+            </oi-select>
+            <span ng-show="!formData.ingener" class="label label-danger info-alert">Поле обязательно к заполнению</span>
+        </div>
+
+    </div>
+
+
+    <div class="row" >
+
+        <div class="form-group col-md-6"  ng-if="formData.open_close_visible">
+            <label>{{ formData.status_close }}</label><br/>
+            <datetimepicker  ng-model="formData.open_close"
+                            date-format="dd-MMM-yyyy" date-options="dateOptions"
+                            date-disabled="isDisabledDate(date, mode)"
+                            readonly-date="false"
+                            show-spinners="true"
+                            readonly-time="false"
+                            show-meridian="false">
+            </datetimepicker>
+            <button ng-click="openClose()" type="submit" class="btn btn-warning"><i class="fa fa-clock-o" aria-hidden="true"></i> Текущее время</button>
+        </div>
+        <div class="form-group col-md-6" ng-if="formData.status_visible">
+            <label>Следующий статус:</label><br/>
+            <datetimepicker ng-model="formData.next_status"
+                            date-format="dd-MMM-yyyy" date-options="dateOptions"
+                            date-disabled="isDisabledDate(date, mode)"
+                            readonly-date="false"
+                            show-spinners="true"
+                            readonly-time="false"
+                            show-meridian="false">
+            </datetimepicker>
+            <button ng-click="nextStatus()" type="submit" class="btn btn-warning"><i class="fa fa-clock-o" aria-hidden="true"></i> Текущее время</button>
+        </div>
+
+        <div class="form-group col-md-6" ng-if="formData.part_visible">
+            <label>Part:</label>
+            <input class="form-control part-input" type="number" min="1" step="1"
+                   ng-model="formData.part"></input>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label>Редактор текста аварии :</label>
+            <textarea class="form-control" ng-model="formData.text" rows="10"></textarea>
+            <span ng-show="!formData.text" class="label label-danger info-alert">Поле обязательно к заполнению</span>
+            <div class="alarm-edit-buttons-block">
+                <button type="submit" class="btn btn-primary btn-xs" ng-click="TranslateRusUkr()">РУС => УКР</button>
+                <button type="submit" class="btn btn-primary btn-xs" ng-click="TranslateUkrRus()">УКР => РУС</button>
+                <button type="submit" class="btn btn-primary btn-xs" ngclipboard data-clipboard-target="#contacts">Копировать "To"</button>
+                <button type="submit" class="btn btn-primary btn-xs" ngclipboard data-clipboard-text="{{ formData.alarmTitle }}" >Копировать "Subject"</button>
+                <button type="submit" class="btn btn-primary btn-xs" ngclipboard data-clipboard-text="{{ formData.text }}" >Копировать "Body"</button>
+                <button type="submit" class="btn btn-primary btn-xs" ngclipboard data-clipboard-text="{{ formData.alarmTitle + '\n' + formData.text}} ">Копировать для Telegram</button>
+            </div>
+            <p>
+                <b> Общее количество символов: </b> {{ count_symbol  }} <br>
+                <b> Без учета поля "Subject": </b> {{ count_symbol_without_subject }}
+                <br>
+                <span ng-show="(613 - count_symbol)>=0"><b> Количество символов осталось: </b> {{ 613 - count_symbol }}</span>
+                <span ng-show="(613 - count_symbol) < 0" class="label label-danger"> Количество символов превышает допустимое</span>
+            </p>
+
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary half-width" ng-if="formData.addButton" ng-disabled="!formData.type_id || !formData.system_id || !formData.ingener || !formData.text" ng-click="addRecord()">Добавить запись
+                </button>
+                <button type="submit" class="btn btn-warning half-width" ng-if="formData.updateButton" ng-disabled="!formData.type_id || !formData.system_id || !formData.ingener || !formData.text" ng-click="updateRecord()">Обновить запись
+                </button>
+                <button type="submit" class="btn btn-danger half-width" ng-if="formData.deleteButton" ng-disabled="!formData.type_id || !formData.system_id || !formData.ingener || !formData.text" ng-click="deleteRecord()">Закрыть аварию
+                </button>
+                <button type="submit" class="btn btn-primary half-width" ng-click="resetForm()">Reset</button>
+            </div>
+        </div>
+    </div>
+</form>

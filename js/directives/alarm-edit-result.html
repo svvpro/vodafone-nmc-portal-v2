@@ -1,0 +1,52 @@
+<div>
+    <label>
+        <a data-toggle="collapse" href="#collapse1" class="colapse" ">ПАНЕЛЬ РЕДАКТИРОВАНИЯ <i class="fa fa-sort" aria-hidden="true"></i></a>
+        <span id="contacts" style="opacity: 0;">{{ mail }} <span ng-repeat="c in formData.ingener" >{{',380'+ c.phone+'@sms.mts.com.ua' }}</span></span>
+    </label>
+
+    <div id="collapse1" class="collapse">
+
+        <table style="margin-bottom: 10px;">
+            <tr class="border-bottom">
+                <td style="width: 90%;" >
+                    <label>
+                        <strong>To:</strong>
+                    </label>
+                    <span >{{ mail }} <span ng-repeat="c in formData.ingener">{{',380'+ c.phone+'@sms.mts.com.ua' }}</span></span></span>
+                        <span id="contacts" style="opacity: 0;">{{ mail }} <span ng-repeat="c in formData.ingener" >{{',380'+ c.phone+'@sms.mts.com.ua' }}</span></span>
+                </td>
+                <td style="width: 10%; padding:  5px 0 5px 0;">
+                    <button class="btn btn-primary" ngclipboard data-clipboard-target="#contacts">Копировать</button>
+                </td>
+            </tr>
+            <tr class="border-bottom">
+                <td style="width: 90%">
+                    <label>
+                        <strong>Subject:</strong>
+                    </label>
+                    {{ formData.alarmTitle }}
+                </td>
+                <td style="width: 10%; padding:  5px 0 5px 0;">
+                    <button class="btn btn-primary"  ngclipboard data-clipboard-text="{{ formData.alarmTitle }}">Копировать</button>
+                </td>
+            </tr>
+            <tr >
+                <td style="width: 90%">
+                    <label>
+                        <strong>Body:</strong>
+                    </label>
+
+                    <div ng-bind-html="formData.text" class="text"></div>
+                </td>
+                <td style="width: 10%; padding:  5px 0 5px 0;">
+                    <button class="btn btn-primary" ngclipboard data-clipboard-text="{{formData.text}}">Копировать</button>
+                </td>
+            </tr>
+
+        </table>
+
+
+    </div>
+
+</div>
+

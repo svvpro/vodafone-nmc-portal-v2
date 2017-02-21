@@ -1,0 +1,39 @@
+<form name="myForm">
+    <input type="hidden" ng-model="formData.id">
+
+    <div class="form-group">
+        <label>Сервис код</label>
+        <input ng-model="formData.service_code_id" type="text" class="form-control" placeholder="Сервис код">
+        <div class="text-center">
+            <span ng-show="!formData.service_code_id" class="label label-danger info-alert">Поле обязательно к заполнению</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Описание</label>
+        <input ng-model="formData.title" type="text" class="form-control" placeholder="Описание">
+        <div class="text-center">
+            <span ng-show="!formData.title" class="label label-danger info-alert">Поле обязательно к заполнению</span>
+        </div>
+    </div>
+
+
+
+    <div class="form-group" ng-init="selectServiceCodeType()">
+        <label>Сервис</label>
+        <select class="form-control" ng-model="formData.service_code_type_id">
+            <option  ng-repeat="system in selectServiceCodeItems | orderBy: 'title'" value="{{ system.id }}">{{ system.title}}</option>
+        </select>
+        <span ng-show="!formData.system_id" class="label label-danger info-alert" >Поле обязательно к заполнению</span>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary half-width" ng-if="formData.addButton" ng-disabled="!formData.service_code_id || !formData.title || !formData.service_code_type_id"
+                ng-click="addRecord()">Добавить запись
+        </button>
+        <button type="submit" class="btn btn-warning half-width" ng-if="formData.updateButton" ng-disabled="!formData.service_code_id || !formData.title || !formData.service_code_type_id"
+                ng-click="updateRecord()">Обновить запись
+        </button>
+        <button type="submit" class="btn btn-primary half-width" ng-click="resetForm()">Reset</button>
+    </div>
+</form>

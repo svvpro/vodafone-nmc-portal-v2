@@ -1,0 +1,69 @@
+<form name="myForm">
+    <input type="hidden" ng-model="formData.id">
+
+    <div class="form-group">
+        <label>Фамилия</label>
+        <input ng-model="formData.surname" type="text" class="form-control" placeholder="Фамилия">
+        <div class="text-center">
+            <span ng-show="!formData.surname" class="label label-danger info-alert">Поле обязательно к заполнению</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Имя</label>
+        <input ng-model="formData.name" type="text" class="form-control" placeholder="Имя">
+        <div class="text-center">
+            <span ng-show="!formData.name" class="label label-danger info-alert">Поле обязательно к заполнению</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Отображение в рассылке</label>
+        <input ng-model="formData.name_in_template" type="text" class="form-control" placeholder="Отображение в рассылке">
+        <div class="text-center">
+            <span ng-show="!formData.name_in_template" class="label label-danger info-alert">Поле обязательно к заполнению</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>PBX</label>
+        <input ng-model="formData.pbx" type="text" class="form-control" placeholder="Отображение в рассылке">
+        <div class="text-center">
+            <span ng-show="!formData.pbx" class="label label-danger info-alert">Поле обязательно к заполнению</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Мобильный телефон</label>
+        <input ng-model="formData.phone" type="text" class="form-control" placeholder="Мобильный телефон">
+        <div class="text-center">
+            <span ng-show="!formData.phone" class="label label-danger info-alert">Поле обязательно к заполнению</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>e-mail</label>
+        <input ng-model="formData.mail" type="text" class="form-control" placeholder="e-mail">
+        <div class="text-center">
+            <span ng-show="!formData.mail" class="label label-danger info-alert">Поле обязательно к заполнению</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-init="selectDepartament()">
+        <label>Группа:</label>
+        <select class="form-control" ng-model="formData.departament_id">
+            <option  ng-repeat="departament in selectDepartamentItems | orderBy: 'title'" value="{{ departament.id }}">{{ departament.title}}</option>
+        </select>
+        <span ng-show="!formData.departament_id" class="label label-danger info-alert" >Поле обязательно к заполнению</span>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary half-width" ng-if="formData.addButton" ng-disabled="!formData.surname || !formData.name || !formData.name_in_template || !formData.pbx || !formData.phone || !formData.mail || !formData.departament_id"
+                ng-click="addRecord()">Добавить запись
+        </button>
+        <button type="submit" class="btn btn-warning half-width" ng-if="formData.updateButton" ng-disabled="!formData.surname || !formData.name || !formData.name_in_template || !formData.pbx || !formData.phone || !formData.mail || !formData.departament_id"
+                ng-click="updateRecord()">Обновить запись
+        </button>
+        <button type="submit" class="btn btn-primary half-width" ng-click="resetForm()">Reset</button>
+    </div>
+</form>

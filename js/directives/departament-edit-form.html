@@ -1,0 +1,17 @@
+<form name="myForm">
+	<input type="hidden" ng-model="formData.id">
+			    
+	<div class="form-group">
+        <label>Группа</label>
+        <input ng-model="formData.title" type="text" class="form-control" placeholder="Группа">
+        <div class="text-center">
+			<span ng-show="!formData.title" class="label label-danger info-alert" >Поле обязательно к заполнению</span>
+	    </div>
+    </div>
+			            	
+	<div class="text-center">
+	    <button type="submit" class="btn btn-primary half-width" ng-if="formData.addButton"  ng-disabled="!formData.title" ng-click="addRecord()">Добавить запись</button>
+	    <button type="submit" class="btn btn-warning half-width" ng-if="formData.updateButton"  ng-disabled="!formData.title" ng-click="updateRecord()">Обновить запись</button>
+	    <button type="submit" class="btn btn-primary half-width" ng-click="resetForm()">Reset</button>
+	</div>
+</form>

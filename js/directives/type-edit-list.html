@@ -1,0 +1,39 @@
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th>id
+            <button class="btn btn-mini btn-link" ng-click="sort('id')"><i class="icon-sort"></i></button>
+        </th>
+        <th>Subject
+            <button class="btn btn-mini btn-link" ng-click="sort('title')"><i class="icon-sort"></i></button>
+        </th>
+        <th>E-mail
+            <button class="btn btn-mini btn-link" ng-click="sort('mail')"><i class="icon-sort"></i></button>
+        </th>
+        <th>Формат отоображения отв. инженера
+            <button class="btn btn-mini btn-link" ng-click="sort('bottom')"><i class="icon-sort"></i></button>
+        </th>
+        <th>Категория
+            <button class="btn btn-mini btn-link" ng-click="sort('category')"><i class="icon-sort"></i></button>
+        </th>
+        <th>Порядок
+            <button class="btn btn-mini btn-link" ng-click="sort('ordering')"><i class="icon-sort"></i></button>
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in pageItems | orderBy:orderProp:direction">
+        <td>{{ item.id }}</td>
+        <td>{{ item.title }}</td>
+        <td>{{ item.mail }}</td>
+        <td>{{ item.bottom }}</td>
+        <td>{{ item.category }}</td>
+        <td>{{ item.ordering }}</td>
+        <td class="text-right block-button">
+            <a href="" ng-click="editRecord(item.id)" class="btn btn-warning btn-xs"> Редактировать</a>
+            <a href="" ng-click="deleteRecord(item.id)" class="btn btn-danger btn-xs"> Удалить</a>
+        </td>
+    </tr>
+    </tbody>
+</table>

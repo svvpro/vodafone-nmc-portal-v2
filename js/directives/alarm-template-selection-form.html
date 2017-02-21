@@ -1,0 +1,44 @@
+<div class="col-md-12 inner-border inner-margin-bottom">
+    <div class="col-md-2">
+        <div class="form-group" ng-init="selectSystem()">
+            <label>Система:</label>
+            <select class="form-control" ng-model="system.title">
+                <option value="">All</option>
+                <option  ng-repeat="system in selectSystemItems | orderBy: 'title'" value="{{ system.title}}">{{ system.title}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group" ng-init="selectTypeTemplate()">
+            <label>Тип шаблона:</label>
+            <select class="form-control" ng-model="type.title">
+                <option value="">All</option>
+                <option  ng-repeat="type in selectTypeTemplateItems | orderBy: 'title'" value="{{ type.title }}">{{ type.title}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group" ng-init="selectTypeAgree()">
+            <label>Тип согласован.:</label>
+            <select class="form-control" ng-model="typeAgree.title">
+                <option value="">All</option>
+                <option  ng-repeat="typeAgree in selectTypeAgreeItems | orderBy: 'title'" value="{{ typeAgree.title }}">{{ typeAgree.title}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group" ng-init="selectTypeAgree()">
+            <label>Язык:</label>
+            <select class="form-control" ng-model="language.id">
+                <option value="">All</option>
+                <option  ng-repeat="language in languages | orderBy: 'title'" value="{{ language.id }}">{{ language.title}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Поиск по тексту:</label>
+            <input type="text" class="form-control"  ng-model="query">
+        </div>
+    </div>
+</div>

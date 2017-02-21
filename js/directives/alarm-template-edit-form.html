@@ -1,0 +1,53 @@
+<form name="myForm">
+    <input type="hidden" ng-model="formData.id">
+
+    <div class="form-group">
+        <label>Текст шаблона:</label>
+        <textarea ng-model="formData.text"  class="form-control" placeholder="Текст шаблона" rows="15"> </textarea>
+        <div class="text-center">
+            <span ng-show="!formData.text" class="label label-danger info-alert">Поле обязательно к заполнению</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-init="selectSystem()">
+        <label>Система:</label>
+        <select class="form-control" ng-model="formData.system_id">
+            <option  ng-repeat="system in selectSystemItems | orderBy: 'title'" value="{{ system.id }}">{{ system.title}}</option>
+        </select>
+        <span ng-show="!formData.system_id" class="label label-danger info-alert" >Поле обязательно к заполнению</span>
+    </div>
+
+    <div class="form-group" ng-init="selectTypeTemplate()">
+        <label>Тип шаблона:</label>
+        <select class="form-control" ng-model="formData.type_id">
+            <option  ng-repeat="type in selectTypeTemplateItems | orderBy: 'title'" value="{{ type.id }}">{{ type.title}}</option>
+        </select>
+        <span ng-show="!formData.type_id" class="label label-danger info-alert" >Поле обязательно к заполнению</span>
+    </div>
+
+    <div class="form-group" ng-init="selectTypeAgree()">
+        <label>Тип согласования:</label>
+        <select class="form-control" ng-model="formData.type_agree_id">
+            <option  ng-repeat="typeAgree in selectTypeAgreeItems | orderBy: 'title'" value="{{ typeAgree.id }}">{{ typeAgree.title}}</option>
+        </select>
+        <span ng-show="!formData.type_agree_id" class="label label-danger info-alert" >Поле обязательно к заполнению</span>
+    </div>
+
+    <div class="form-group" ng-init="selectTypeAgree()">
+        <label>Язык:</label>
+        <select class="form-control" ng-model="formData.language">
+            <option  ng-repeat="language in languages | orderBy: 'title'" value="{{ language.id }}">{{ language.title}}</option>
+        </select>
+        <span ng-show="!formData.language" class="label label-danger info-alert" >Поле обязательно к заполнению</span>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary half-width" ng-if="formData.addButton" ng-disabled="!formData.text || !formData.system_id || !formData.type_id || !formData.type_agree_id || !formData.language "
+                ng-click="addRecord()">Добавить запись
+        </button>
+        <button type="submit" class="btn btn-warning half-width" ng-if="formData.updateButton" ng-disabled="!formData.text || !formData.system_id || !formData.type_id || !formData.type_agree_id || !formData.language"
+                ng-click="createPdf()">Обновить запись
+        </button>
+        <button type="submit" class="btn btn-primary half-width" ng-click="resetForm()">Reset</button>
+    </div>
+</form>

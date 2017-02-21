@@ -1,0 +1,22 @@
+<div class="inner-border col-md-12" ng-controller="AlarmCtrl" >
+    <div class="form-group">
+        <label>Список шаблонов:</label>
+        <div dir-paginate="item in pageItems | orderBy:'-id' | filter:{text:query, system: system.title, type: type.title, type_agree: typeAgree.title, language: language.id} | itemsPerPage: 5">
+                <a href="#" ng-click="insertTemplate(item.text)">
+                    <div class="alert alert-dismissible alert-info" >
+                        <p class="system">
+                               <span><b>Система : </b><span>{{ item.system }}
+                               <span><b>Тип : </b><span>{{ item.type }}
+                               <span><b>Тип согласования : </b><span>{{ item.type_agree }}
+                        </p>
+                        <hr>
+                        <p class="text">{{item.text}}</p>
+                    </div>
+                </a>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <dir-pagination-controls template-url="../bower_components/angularUtils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+    </div>
+</div>

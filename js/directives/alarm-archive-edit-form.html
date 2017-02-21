@@ -1,0 +1,80 @@
+<div class="row" ng-init="resetForm()">
+    <input type="hidden" ng-model="formData.id">
+    <div class="form-group col-md-12" ng-init="selectCategory()">
+        <label>Категория</label>
+        <select class="form-control" ng-model="formData.category_id" >
+            <option value="">Выбор типа информированя</option>
+            <option ng-repeat="category in selectCategoryItems" value="{{ category.id }}">
+                {{ category.title }}
+            </option>
+        </select>
+
+    </div>
+
+    <div class="form-group col-md-12" ng-init="selectSystem()">
+        <label>Система</label>
+        <select class="form-control" ng-model="formData.system_id">
+            <option value="">Выбор системы</option>
+            <option ng-repeat="system in selectSystemItems" value="{{ system.id }}">{{ system.title}}</option>
+        </select>
+
+    </div>
+
+    <div class="form-group col-md-12">
+        <label>Комментарий</label>
+        <input ng-model="formData.comment" type="text" class="form-control" placeholder="Комментарий">
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Текст открытия аварии:</label>
+            <textarea ng-model="formData.text_open"  class="form-control" placeholder="Текст шаблона" rows="15"> </textarea>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Текст закрытия аварии:</label>
+            <textarea ng-model="formData.text_close"  class="form-control" placeholder="Текст шаблона" rows="15"> </textarea>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="form-group col-md-6">
+        <label>Время открытия аварии:</label><br/>
+        <datetimepicker  ng-model="formData.date_open"
+                         date-format="dd-MMM-yyyy" date-options="dateOptions"
+                         date-disabled="isDisabledDate(date, mode)"
+                         readonly-date="false"
+                         show-spinners="true"
+                         readonly-time="false"
+                         show-meridian="false">
+        </datetimepicker>
+    </div>
+    <div class="form-group col-md-6">
+        <label>Время закрытия аварии:</label><br/>
+        <datetimepicker ng-model="formData.date_close"
+                        date-format="dd-MMM-yyyy" date-options="dateOptions"
+                        date-disabled="isDisabledDate(date, mode)"
+                        readonly-date="false"
+                        show-spinners="true"
+                        readonly-time="false"
+                        show-meridian="false">
+        </datetimepicker>
+    </div>
+</div>
+<div class="row">
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary half-width" ng-if="formData.addButton"
+                ng-click="addRecord()">Добавить запись
+        </button>
+        <button type="submit" class="btn btn-warning half-width" ng-if="formData.updateButton"
+                ng-click="updateRecord()">Обновить запись
+        </button>
+        <button type="submit" class="btn btn-primary half-width" ng-click="resetForm()">Reset</button>
+    </div>
+</div>

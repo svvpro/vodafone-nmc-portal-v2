@@ -1,0 +1,68 @@
+<div class="col-md-12 " style="padding: 20px 0 20px 0">
+    <!--<div class="col-md-12" ng-init="getYearChart()">-->
+        <!--<div ng-if="none">-->
+            <!--<fusioncharts-->
+                    <!--width="100%"-->
+                    <!--height="400"-->
+                    <!--type="stackedcolumn2d"-->
+                    <!--datasource="{{ yearResult }}">-->
+            <!--</fusioncharts>-->
+        <!--</div>-->
+        <!--{{ yearResult }}-->
+    <!--</div>-->
+    <div class="col-md-6" ng-init="getSystemChart()" id="mark">
+        <div ng-if="none">
+            <fusioncharts
+                    width="100%"
+                    height="400"
+                    type="pie3d"
+                    chart="{{ chartAttrs }}"
+                    datasource="{{ systemChartItems }}">
+            </fusioncharts>
+        </div>
+
+        <label>Статистика по системах: </label>
+        <table  class="table table-striped table-hover stat-table">
+            <thead>
+            <tr>
+                <th>Система</th>
+                <th>Количество</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr ng-repeat="(key, value) in pageRangeItems | countBy: 'system'"  >
+                <td> {{ key }}</td>
+                <td>{{ value }}</td>
+                </td>
+            </tbody >
+        </table>
+    </div>
+
+    <div class="col-md-6" ng-init="getCategoryChart()">
+        <div ng-if="none">
+            <fusioncharts
+                    width="100%"
+                    height="400"
+                    type="pie3d"
+                    chart="{{ chartAttrs }}"
+                    datasource="{{ categoryChartItems }}">
+            </fusioncharts>
+        </div>
+
+        <label>Статистика по категориях: </label>
+        <table  class="table table-striped table-hover stat-table">
+            <thead>
+            <tr>
+                <th>Категория</th>
+                <th>Количество</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr ng-repeat="(key, value) in pageRangeItems | countBy: 'category' " >
+                <td> {{ key }}</td>
+                <td>{{ value }}</td>
+                </td>
+            </tbody >
+        </table>
+    </div>
+</div>

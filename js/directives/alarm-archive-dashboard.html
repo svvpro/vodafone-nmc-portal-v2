@@ -1,0 +1,50 @@
+<div class="col-md-12" >
+    <div class="form-group col-md-2 statistic-input-margin" ng-init="selectCategory()">
+        <label>Тип информирования</label>
+        <select class="form-control" ng-model="category.title" >
+            <option value="">All</option>
+            <option ng-repeat="category in selectCategoryItems" value="{{ category.title }}">
+                {{ category.title }}
+            </option>
+        </select>
+    </div>
+    <div class="form-group col-md-2 statistic-input-margin" ng-init="selectSystem()">
+        <label>Система</label>
+        <select class="form-control" ng-model="system.title">
+            <option value="">All</option>
+            <option ng-repeat="system in selectSystemItems" value="{{ system.title  }}">{{ system.title}}</option>
+        </select>
+    </div>
+
+    <div class="form-group col-md-2 statistic-input-margin">
+        <label>Поиск по тексту закрытия:</label>
+        <input type="text" class="form-control" ng-model="query">
+    </div>
+    <div class="form-group col-md-3">
+        <label for="inputType">с:</label>
+        <datetimepicker hour-step="hourStep"
+                        minute-step="minuteStep" ng-model="from"
+                        date-format="dd-MMM-yyyy" date-options="dateOptions"
+                        date-disabled=""
+                        readonly-date="false"
+                        show-spinners="false"
+                        readonly-time="true"
+                        show-meridian="false"
+                        ng-change="getArchiveByDateRange()">
+        </datetimepicker>
+    </div>
+    <div class="form-group col-md-3">
+        <label for="inputType">по:</label>
+        <datetimepicker hour-step="hourStep"
+                        minute-step="minuteStep" ng-model="to"
+                        date-format="dd-MMM-yyyy" date-options="dateOptions"
+                        date-disabled=""
+                        readonly-date="false"
+                        show-spinners="false"
+                        readonly-time="true"
+                        show-meridian="false">
+        </datetimepicker>
+    </div>
+    <button class="btn btn-primary statistic-form-button" ng-click="exportData()">Export to Excel</button>
+    <button class="btn btn-primary statistic-form-button" ng-click="reloadData()">Обновить данные</button>
+</div>
